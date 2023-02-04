@@ -5,7 +5,7 @@ import { type ReactNode } from 'react';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="fr" dir="ltr" className={cn('[color-scheme:dark] scroll-smooth bg-light-dark')}>
+    <html lang="fr" dir="ltr" className={cn('scroll-smooth bg-light-dark [color-scheme:dark]')}>
       <head />
       <body className="relative min-h-screen">
         <main>{children}</main>

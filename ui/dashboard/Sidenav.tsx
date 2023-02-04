@@ -7,7 +7,7 @@ import AppLink from '../AppLink';
 
 export default function Sidenav() {
   return (
-    <div className="fixed top-0 left-0 h-full w-60 space-y-4 bg-dark shadow-md">
+    <div className="fixed top-0 left-0 hidden h-full w-60 space-y-4 bg-dark shadow-md md:block">
       <div className="px-6 pt-4">
         <div className="flex items-center">
           <div className="mx-auto">
