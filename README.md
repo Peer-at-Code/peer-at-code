@@ -1,38 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Peer-at Code
 
-## Getting Started
+Peer-at Code est un site web qui permet d'offrir un parcours amusant qui but de donner l’envie de coder et d’apprendre par le jeu.
 
-First, run the development server:
+## Installation
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Installer [Node.js](https://nodejs.org/en/download/) (v14.15.4 ou supérieur)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Installer [pnpm](https://pnpm.io/installation)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Exécuter `pnpm install` dans le dossier du projet pour installer les dépendances
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+4. Exécuter `pnpm dev` pour démarrer le serveur de développement
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Ouvre [http://localhost:3000](http://localhost:3000) avec ton navigateur pour accéder au site.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Déploiement
+---
 
-## Learn More
+1. Exécuter `pnpm build` pour générer le site
 
-To learn more about Next.js, take a look at the following resources:
+2. Exécuter `pnpm start` pour démarrer le serveur de production
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Ouvre [http://localhost:3000](http://localhost:3000) avec ton navigateur pour accéder au site.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contribution
+---
 
-## Deploy on Vercel
+C'est un projet open-source, donc n'hésite pas à contribuer ! Voici quelques conseils pour contribuer :
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Crée une branche pour tes modifications
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+2. Fais tes modifications
+
+3. Crée une pull-request
+
+Tu peux aussi créer une issue si tu as des questions ou des suggestions.
+
+N'oublie pas de rejoindre le [serveur Discord](https://discord.gg/72vuHcwUkE) pour discuter avec nous !
+
