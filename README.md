@@ -1,6 +1,6 @@
 # Peer-at Code
 
-Peer-at Code est un site web qui permet d'offrir un parcours amusant qui but de donner l’envie de coder et d’apprendre par le jeu.
+Peer-at Code est un site web qui permet d'offrir un parcours amusant, le but étant de donner l’envie de coder et d’apprendre par le jeu.
 
 ## Installation
 

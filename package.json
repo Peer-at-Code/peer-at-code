@@ -11,6 +11,22 @@
     "prettier:check": "prettier --check \"**/*.{ts,tsx,json}\"",
     "eslint:format": "eslint . --ext ts --ext tsx --ext js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Peer-at-Code/peer-at-code.git"
+  },
+  "keywords": [
+    "Discord Bot",
+    "Hogwarts.gg",
+    "Discord.js",
+    "Harry Potter",
+    "Hogwarts Legacy"
+  ],
+  "license": "GNU General Public License v3.0",
+  "bugs": {
+    "url": "https://github.com/Peer-at-Code/peer-at-code/issues"
+  },
+  "homepage": "https://github.com/Peer-at-Code/peer-at-code#readme",
   "dependencies": {
     "@next/font": "13.1.6",
     "clsx": "^1.2.1",
