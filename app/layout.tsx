@@ -1,12 +1,13 @@
-import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
-import { ReactNode } from 'react';
+
+import { cn } from '@/lib/utils';
+import { type ReactNode } from 'react';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="fr" dir="ltr" className={cn('[color-scheme:dark] scroll-smooth')}>
+    <html lang="fr" dir="ltr" className={cn('[color-scheme:dark] scroll-smooth bg-light-dark')}>
       <head />
-      <body className="min-h-screen">
+      <body className="relative min-h-screen">
         <main>{children}</main>
       </body>
     </html>
