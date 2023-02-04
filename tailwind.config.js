@@ -6,7 +6,12 @@ module.exports = {
     hoverOnlyWhenSupported: true
   },
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        'light-dark': '#282828',
+        dark: '#202020'
+      }
+    }
   },
   plugins: [require('@tailwindcss/forms')]
 };
