@@ -3,7 +3,6 @@
 Peer-at Code est un site web qui permet d'offrir un parcours amusant qui but de donner l’envie de coder et d’apprendre par le jeu.
 
 ## Installation
----
 
 1. Installer [Node.js](https://nodejs.org/en/download/) (v14.15.4 ou supérieur)
 
@@ -16,7 +15,6 @@ Peer-at Code est un site web qui permet d'offrir un parcours amusant qui but de 
 Ouvre [http://localhost:3000](http://localhost:3000) avec ton navigateur pour accéder au site.
 
 ## Déploiement
----
 
 1. Exécuter `pnpm build` pour générer le site
 
@@ -25,7 +23,6 @@ Ouvre [http://localhost:3000](http://localhost:3000) avec ton navigateur pour ac
 Ouvre [http://localhost:3000](http://localhost:3000) avec ton navigateur pour accéder au site.
 
 ## Contribution
----
 
 C'est un projet open-source, donc n'hésite pas à contribuer ! Voici quelques conseils pour contribuer :
 
@@ -39,3 +36,6 @@ Tu peux aussi créer une issue si tu as des questions ou des suggestions.
 
 N'oublie pas de rejoindre le [serveur Discord](https://discord.gg/72vuHcwUkE) pour discuter avec nous !
 
+## Licence
+
+[GPU GPL V3.0](https://github.com/Peer-at-Code/peer-at-code/blob/main/LICENSE)
