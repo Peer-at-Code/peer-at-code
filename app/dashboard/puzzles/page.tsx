@@ -27,7 +27,7 @@ export default function Page() {
             label="Code"
             name="code_file"
             type="file"
-            accept=".py,.js,.ts,.java,.rust"
+            accept=".py,.js,.ts,.java,.rust,.c"
           />
         </div>
         <Button className="mt-6" type="submit">

@@ -1,4 +1,5 @@
 import '@/styles/globals.css';
+import 'remixicon/fonts/remixicon.css';
 
 import { cn } from '@/lib/utils';
 import { type ReactNode } from 'react';

@@ -2,7 +2,6 @@ lockfileVersion: 5.4
 
 specifiers:
   '@next/font': 13.1.6
-  '@tabler/icons': ^2.2.0
   '@tailwindcss/forms': ^0.5.3
   '@types/node': 18.11.18
   '@types/react': 18.0.27
@@ -21,6 +20,7 @@ specifiers:
   prettier-plugin-tailwindcss: ^0.2.2
   react: 18.2.0
   react-dom: 18.2.0
+  remixicon: ^2.5.0
   swr: ^2.0.3
   tailwind-merge: ^1.9.0
   tailwindcss: ^3.2.4
@@ -29,11 +29,11 @@ specifiers:
 
 dependencies:
   '@next/font': 13.1.6
-  '@tabler/icons': 2.2.0
   clsx: 1.2.1
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  remixicon: 2.5.0
   swr: 2.0.3_react@18.2.0
   tailwind-merge: 1.9.0
   zod: 3.20.2
@@ -274,10 +274,6 @@ packages:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
       tslib: 2.5.0
-    dev: false
-
-  /@tabler/icons/2.2.0:
-    resolution: {integrity: sha512-s2mm+7JqmLObKdU89Dtiy+USmUpOlACsoXZZPykjAJZC4pK3wMYxLsclJxViWLeLTb6Bc0oga92V7R+9nrj1ZQ==}
     dev: false
 
   /@tailwindcss/forms/0.5.3_tailwindcss@3.2.4:
@@ -2313,6 +2309,10 @@ packages:
     resolution: {integrity: sha512-pq2bWo9mVD43nbts2wGv17XLiNLya+GklZ8kaDLV2Z08gDCsGpnKn9BFMepvWuHCbyVvY7J5o5+BVvoQbmlJLg==}
     engines: {node: '>=8'}
     dev: true
+
+  /remixicon/2.5.0:
+    resolution: {integrity: sha512-q54ra2QutYDZpuSnFjmeagmEiN9IMo56/zz5dDNitzKD23oFRw77cWo4TsrAdmdkPiEn8mxlrTqxnkujDbEGww==}
+    dev: false
 
   /resolve-from/4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}
