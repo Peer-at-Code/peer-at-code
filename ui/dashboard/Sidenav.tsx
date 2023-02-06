@@ -1,77 +1,111 @@
+'use client';
+
 import { NavItem, navItems } from '@/lib/nav-items';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 import { useSelectedLayoutSegment } from 'next/navigation';
+import { useState } from 'react';
+import Logo from '../../public/logo.webp';
 import AppLink from '../AppLink';
 import Icon from '../Icon';
 
-export default function Sidenav({
-  onClick,
-  width,
-  isOpen
-}: {
-  onClick: () => void;
-  width: number;
-  isOpen: boolean;
-}) {
+export default function Sidenav() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  function toggleSidenav() {
+    setIsOpen(!isOpen);
+  }
+
   return (
-    (width >= 640 && (
-      <aside
-        className={cn(
-          'hidden fixed top-0 left-0 z-10 h-full space-y-4 bg-dark shadow-md transition-all duration-300 ease-in-out sm:block',
-          isOpen ? 'w-60' : 'w-24 '
-        )}
-      >
-        <div className="px-8 pt-4">
-          <div className="mx-auto items-center">
-            <button onClick={onClick} className="flex h-10 w-full items-center space-x-2">
+    <aside
+      className={cn(
+        'relative flex h-24 flex-row justify-between bg-dark shadow-md transition-all duration-300 ease-in-out sm:h-screen sm:flex-col',
+        {
+          'sm:w-60': isOpen,
+          'w-full sm:w-28': !isOpen
+        }
+      )}
+    >
+      <div className="flex flex-row sm:flex-col">
+        <div className="flex px-4 pt-0 sm:block sm:items-center sm:pt-4">
+          <div className="flex items-center justify-between">
+            <AppLink href="/" className="hidden sm:block">
+              <Image src={Logo} alt="Peer-at Code Logo" className=" h-10 w-10" />
+            </AppLink>
+            <button
+              className="flex items-center justify-center rounded bg-light-dark p-1"
+              onClick={toggleSidenav}
+            >
               <Icon
-                className={cn(
-                  'text-xl transition-transform duration-300 ease-in-out',
-                  isOpen ? 'rotate-180' : 'rotate-0'
-                )}
-                name="arrow-right-s-line"
+                name="arrow-left-line"
+                className={cn('transition duration-300', {
+                  'rotate-0': isOpen,
+                  'rotate-180': !isOpen
+                })}
               />
-              <span
-                className={cn(
-                  'text-xl font-semibold transition',
-                  isOpen ? 'duration-400 opacity-100 delay-150' : 'opacity-0'
-                )}
-              >
-                Peer-at-Code
-              </span>
             </button>
           </div>
         </div>
-        <hr className="mx-auto w-1/2 pb-4" />
-        <ul
-          className={cn(
-            'relative flex flex-col space-y-4 transition-all duration-300 ease-in-out',
-            isOpen ? ' px-8' : 'px-4'
-          )}
-        >
-          {navItems.map((item) => (
-            <li className="relative" key={item.slug}>
-              <NavItem item={item} isOpen={isOpen} />
-            </li>
-          ))}
-        </ul>
-        <div
-          className={cn(
-            'absolute bottom-5 flex w-full items-center text-center',
-            isOpen ? 'px-8' : 'px-4'
-          )}
-        >
-          <button
-            className={cn(
-              'mx-auto w-full truncate rounded-md bg-light-dark py-3 transition-all duration-300 ease-in-out hover:bg-light-dark/60'
-            )}
-          >
-            <span className="text-sm font-semibold">Session ici</span>
+        <div className="hidden px-4 pt-4 sm:block">
+          <hr className="border-light-dark" />
+        </div>
+        <div className="hidden px-4 pt-4 sm:block">
+          <ul className="space-y-4">
+            {navItems.map((item) => (
+              <li key={item.slug}>
+                <NavItem item={item} isOpen={isOpen} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="flex flex-row sm:flex-col">
+        <div className="px-4 py-4">
+          <button className="flex w-full items-center space-x-2 truncate rounded bg-light-dark p-3">
+            <Icon className="text-2xl" name="user-line" />
+            <span className="truncate">Hacktiviste</span>
           </button>
         </div>
-      </aside>
-    )) || (
-      <aside
+      </div>
+    </aside>
+  );
+}
+
+function NavItem({ item, isOpen }: { item: NavItem; isOpen: boolean }) {
+  const segment = useSelectedLayoutSegment();
+  const isActive = segment?.split('/').pop() === item.slug || (item.slug === '' && !segment);
+  return (
+    <AppLink
+      href={item.disabled ? '/dashboard' : `/dashboard/${item.slug}`}
+      className={cn('flex rounded-md px-3 py-3 text-sm font-medium', {
+        'bg-light-dark text-gray-400 hover:bg-light-dark/60 hover:text-white': !isActive,
+        'bg-blue-500 text-white': isActive,
+        'text-gray-600 hover:text-gray-600': item.disabled,
+        'justify-start': isOpen,
+        'justify-center': !isOpen
+      })}
+      passHref
+    >
+      <div
+        className={cn('flex items-center', {
+          'space-x-2': isOpen
+        })}
+      >
+        <Icon className="text-2xl" name={item.icon} />
+        <span
+          className={cn({
+            hidden: !isOpen
+          })}
+        >
+          {item.name}
+        </span>
+      </div>
+    </AppLink>
+  );
+}
+
+{
+  /* <aside
         className={cn(
           'fixed top-0 z-10 w-full bg-dark shadow-md transition-all duration-300 ease-in-out sm:block md:hidden'
         )}
@@ -108,32 +142,5 @@ export default function Sidenav({
             ))}
           </ul>
         </div>
-      </aside>
-    )
-  );
-}
-
-function NavItem({ item, isOpen }: { item: NavItem; isOpen: boolean }) {
-  const segment = useSelectedLayoutSegment();
-  const isActive = segment?.split('/').pop() === item.slug || (item.slug === '' && !segment);
-  return (
-    <AppLink
-      href={item.disabled ? '/dashboard' : `/dashboard/${item.slug}`}
-      className={cn(
-        'flex rounded-md px-3 py-3 text-sm font-medium transition duration-300 ease-in-out',
-        {
-          'bg-light-dark text-gray-400 hover:bg-light-dark/60': !isActive,
-          'bg-blue-500 text-white': isActive,
-          'text-gray-600 hover:text-gray-600': item.disabled,
-          'justify-center': !isOpen
-        }
-      )}
-      passHref
-    >
-      <div className={cn('flex items-center', isOpen && 'space-x-4')}>
-        <Icon className="text-2xl" name={item.icon} />
-        <span className={cn(isOpen ? 'block' : 'hidden')}>{item.name}</span>
-      </div>
-    </AppLink>
-  );
+      </aside> */
 }
