@@ -28,7 +28,7 @@ export default function Page() {
           <div className='w-6/12 mb-9'>
             <h1 className="text-2xl font-bold tracking-tight">Dernières activités </h1>
             <div className="flex flex-col space-x-0 md:flex-row md:space-x-[10%] pt-5 h-full">
-              <CardTable></CardTable>
+              <CardTable />
             </div>
           </div>
         </div>
