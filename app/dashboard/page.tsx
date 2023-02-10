@@ -7,9 +7,9 @@ export default function Page() {
       <div className="">
         <h1 className="text-2xl font-bold tracking-tight">Statistique</h1>
         <div className="flex flex-col space-x-0 md:flex-row md:space-x-9 pt-5">
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
+          <Card />
+          <Card />
+          <Card />
         </div>
         <div className="flex flex-col space-x-0 md:flex-row md:space-x-[5%] pt-5 h-[60%]">
           <div className='w-6/12 mb-9'>
