@@ -1,5 +1,4 @@
 import Puzzles from '@/ui/Puzzles';
-import SWRFallback from '@/ui/SWRFallback';
 
 export default async function Page() {
   // const puzzles = await getPuzzles();

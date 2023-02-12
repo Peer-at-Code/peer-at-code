@@ -1,12 +1,8 @@
-export default function Card() {
-    return (
-        <div className="w-96 h-20 bg-dark rounded-lg shadow-md mb-9">
-            <div className="flex w-full h-full py-2 px-4 rounded-lg justify-between">
-              <div className="my-auto">
-                <p className="font-bold">Bold data</p>
-                <p className="text-lg">Simple data</p>
-              </div>
-            </div>
-          </div>
-    );
-  }
+export default function Card({ title = 'Title', data = 'Data' }) {
+  return (
+    <div className="flex w-full flex-col rounded-lg border-2 border-highlight-primary bg-primary-700 p-4 shadow-md">
+      <p className="font-bold">{title}</p>
+      <p className="text-lg">{data}</p>
+    </div>
+  );
+}

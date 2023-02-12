@@ -1,8 +1,10 @@
+import AppLink from './AppLink';
+
 export default function CardTable() {
   return (
-    <div className="relative w-full overflow-x-auto border-2 border-dark/60 bg-dark shadow-md sm:rounded-lg">
-      <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400 ">
-        <thead className="z-1 sticky top-0 bg-light-dark text-xs uppercase text-white">
+    <div className="relative w-full overflow-x-auto border-2 border-highlight-primary bg-primary-700 shadow-md sm:rounded-lg">
+      <table className="w-full text-left text-sm text-muted ">
+        <thead className="z-1 sticky top-0 bg-primary-600 text-xs uppercase text-white">
           <tr>
             <th scope="col" className="px-6 py-3">
               Exercice
@@ -22,164 +24,212 @@ export default function CardTable() {
           </tr>
         </thead>
         <tbody>
-          <tr className=" border-b bg-dark hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-            >
+          <tr className="bg-primary-700 hover:bg-primary-800 ">
+            <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white">
               Exercice 1
             </th>
             <td className="px-6 py-4">30</td>
             <td className="px-6 py-4">300</td>
             <td className="px-6 py-4">10/10/2010</td>
             <td className="px-6 py-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+              <AppLink
+                href="dashboard/puzzles/1"
+                className="font-medium text-brand hover:underline"
+              >
                 Reprendre
-              </a>
+              </AppLink>
             </td>
           </tr>
-          <tr className="border-b bg-dark  hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-            >
+          <tr className="bg-primary-700 hover:bg-primary-800 ">
+            <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white">
               Exercice 1
             </th>
-            <td className="px-6 py-4">40</td>
+            <td className="px-6 py-4">30</td>
             <td className="px-6 py-4">300</td>
             <td className="px-6 py-4">10/10/2010</td>
             <td className="px-6 py-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+              <AppLink
+                href="dashboard/puzzles/1"
+                className="font-medium text-brand hover:underline"
+              >
                 Reprendre
-              </a>
+              </AppLink>
             </td>
           </tr>
-          <tr className="bg-dark hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-            >
+          <tr className="bg-primary-700 hover:bg-primary-800 ">
+            <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white">
               Exercice 1
             </th>
-            <td className="px-6 py-4">60</td>
+            <td className="px-6 py-4">30</td>
             <td className="px-6 py-4">300</td>
             <td className="px-6 py-4">10/10/2010</td>
             <td className="px-6 py-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+              <AppLink
+                href="dashboard/puzzles/1"
+                className="font-medium text-brand hover:underline"
+              >
                 Reprendre
-              </a>
+              </AppLink>
             </td>
           </tr>
-          <tr className="bg-dark hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-            >
+          <tr className="bg-primary-700 hover:bg-primary-800 ">
+            <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white">
               Exercice 1
             </th>
-            <td className="px-6 py-4">60</td>
+            <td className="px-6 py-4">30</td>
             <td className="px-6 py-4">300</td>
             <td className="px-6 py-4">10/10/2010</td>
             <td className="px-6 py-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+              <AppLink
+                href="dashboard/puzzles/1"
+                className="font-medium text-brand hover:underline"
+              >
                 Reprendre
-              </a>
+              </AppLink>
             </td>
           </tr>
-          <tr className="bg-dark hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-            >
+          <tr className="bg-primary-700 hover:bg-primary-800 ">
+            <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white">
               Exercice 1
             </th>
-            <td className="px-6 py-4">60</td>
+            <td className="px-6 py-4">30</td>
             <td className="px-6 py-4">300</td>
             <td className="px-6 py-4">10/10/2010</td>
             <td className="px-6 py-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+              <AppLink
+                href="dashboard/puzzles/1"
+                className="font-medium text-brand hover:underline"
+              >
                 Reprendre
-              </a>
+              </AppLink>
             </td>
           </tr>
-          <tr className="bg-dark hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-            >
+          <tr className="bg-primary-700 hover:bg-primary-800 ">
+            <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white">
               Exercice 1
             </th>
-            <td className="px-6 py-4">60</td>
+            <td className="px-6 py-4">30</td>
             <td className="px-6 py-4">300</td>
             <td className="px-6 py-4">10/10/2010</td>
             <td className="px-6 py-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+              <AppLink
+                href="dashboard/puzzles/1"
+                className="font-medium text-brand hover:underline"
+              >
                 Reprendre
-              </a>
+              </AppLink>
             </td>
           </tr>
-          <tr className="bg-dark hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-            >
+          <tr className="bg-primary-700 hover:bg-primary-800 ">
+            <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white">
               Exercice 1
             </th>
-            <td className="px-6 py-4">60</td>
+            <td className="px-6 py-4">30</td>
             <td className="px-6 py-4">300</td>
             <td className="px-6 py-4">10/10/2010</td>
             <td className="px-6 py-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+              <AppLink
+                href="dashboard/puzzles/1"
+                className="font-medium text-brand hover:underline"
+              >
                 Reprendre
-              </a>
+              </AppLink>
             </td>
           </tr>
-          <tr className="bg-dark hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-            >
+          <tr className="bg-primary-700 hover:bg-primary-800 ">
+            <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white">
               Exercice 1
             </th>
-            <td className="px-6 py-4">60</td>
+            <td className="px-6 py-4">30</td>
             <td className="px-6 py-4">300</td>
             <td className="px-6 py-4">10/10/2010</td>
             <td className="px-6 py-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+              <AppLink
+                href="dashboard/puzzles/1"
+                className="font-medium text-brand hover:underline"
+              >
                 Reprendre
-              </a>
+              </AppLink>
             </td>
           </tr>
-          <tr className="bg-dark hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-            >
+          <tr className="bg-primary-700 hover:bg-primary-800 ">
+            <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white">
               Exercice 1
             </th>
-            <td className="px-6 py-4">60</td>
+            <td className="px-6 py-4">30</td>
             <td className="px-6 py-4">300</td>
             <td className="px-6 py-4">10/10/2010</td>
             <td className="px-6 py-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+              <AppLink
+                href="dashboard/puzzles/1"
+                className="font-medium text-brand hover:underline"
+              >
                 Reprendre
-              </a>
+              </AppLink>
             </td>
           </tr>
-          <tr className="bg-dark hover:bg-gray-50 dark:hover:bg-gray-600">
-            <th
-              scope="row"
-              className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
-            >
+          <tr className="bg-primary-700 hover:bg-primary-800 ">
+            <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white">
               Exercice 1
             </th>
-            <td className="px-6 py-4">60</td>
+            <td className="px-6 py-4">30</td>
             <td className="px-6 py-4">300</td>
             <td className="px-6 py-4">10/10/2010</td>
             <td className="px-6 py-4 text-right">
-              <a href="#" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+              <AppLink
+                href="dashboard/puzzles/1"
+                className="font-medium text-brand hover:underline"
+              >
                 Reprendre
-              </a>
+              </AppLink>
+            </td>
+          </tr>
+          <tr className="bg-primary-700 hover:bg-primary-800 ">
+            <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white">
+              Exercice 1
+            </th>
+            <td className="px-6 py-4">30</td>
+            <td className="px-6 py-4">300</td>
+            <td className="px-6 py-4">10/10/2010</td>
+            <td className="px-6 py-4 text-right">
+              <AppLink
+                href="dashboard/puzzles/1"
+                className="font-medium text-brand hover:underline"
+              >
+                Reprendre
+              </AppLink>
+            </td>
+          </tr>
+          <tr className="bg-primary-700 hover:bg-primary-800 ">
+            <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white">
+              Exercice 1
+            </th>
+            <td className="px-6 py-4">30</td>
+            <td className="px-6 py-4">300</td>
+            <td className="px-6 py-4">10/10/2010</td>
+            <td className="px-6 py-4 text-right">
+              <AppLink
+                href="dashboard/puzzles/1"
+                className="font-medium text-brand hover:underline"
+              >
+                Reprendre
+              </AppLink>
+            </td>
+          </tr>
+          <tr className="bg-primary-700 hover:bg-primary-800 ">
+            <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-white">
+              Exercice 1
+            </th>
+            <td className="px-6 py-4">30</td>
+            <td className="px-6 py-4">300</td>
+            <td className="px-6 py-4">10/10/2010</td>
+            <td className="px-6 py-4 text-right">
+              <AppLink
+                href="dashboard/puzzles/1"
+                className="font-medium text-brand hover:underline"
+              >
+                Reprendre
+              </AppLink>
             </td>
           </tr>
         </tbody>

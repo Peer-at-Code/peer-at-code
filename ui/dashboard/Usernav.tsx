@@ -16,7 +16,7 @@ export default function Usernav({ isOpen, toggle }: { isOpen: boolean; toggle: (
   };
 
   return (
-    <div className="z-50 flex flex-row items-center justify-between border-b border-solid border-highlight-primary bg-secondary py-4 px-8">
+    <div className="z-50 flex w-full flex-row items-center justify-between border-b border-solid border-highlight-primary bg-secondary py-4 px-8">
       <div className="flex flex-row items-center space-x-2 sm:space-x-0">
         <div className="flex items-center">
           <button onClick={toggle} className="block sm:hidden">
