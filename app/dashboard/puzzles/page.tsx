@@ -1,39 +1,18 @@
-import Button from '@/ui/Button';
-import Input from '@/ui/Input';
-import ToHTML from '@/ui/ToHTML';
+import Puzzles from '@/ui/Puzzles';
+import SWRFallback from '@/ui/SWRFallback';
 
-export default function Page() {
-  // on va utiliser react-hook-form https://react-hook-form.com/
+export default async function Page() {
+  // const puzzles = await getPuzzles();
+
   return (
     <div className="flex h-full w-full flex-col justify-between space-y-4">
-      <div className="flex flex-col space-y-2">
-        <h2 className="text-4xl font-bold">Titre du puzzle</h2>
-        <p className="text-sm text-gray-400">Chapitre 2 - Les boucles à boucler</p>
+      <div className="flex flex-col space-y-6">
+        <section className="flex flex-col space-y-6">
+          {/* <SWRFallback fallback={{ ['puzzles']: puzzles }}> */}
+          <Puzzles />
+          {/* </SWRFallback> */}
+        </section>
       </div>
-      <div className="flex h-screen overflow-y-auto">
-        <ToHTML html="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa modi vitae labore. Distinctio nobis perspiciatis eligendi optio illum doloremque fuga laborum accusantium vero deserunt sit, ab neque! Dicta, eius tempore!" />
-      </div>
-      <form className="flex w-full flex-col justify-between sm:flex-row">
-        <div className="flex flex-col space-x-0 sm:flex-row sm:space-x-6">
-          <Input
-            className="w-full sm:w-1/3"
-            label="Réponse"
-            name="answer"
-            type="text"
-            placeholder="12"
-          />
-          <Input
-            className="h-16 w-full sm:w-1/3"
-            label="Code"
-            name="code_file"
-            type="file"
-            accept=".py,.js,.ts,.java,.rust,.c"
-          />
-        </div>
-        <Button className="mt-6" type="submit">
-          Envoyer
-        </Button>
-      </form>
     </div>
   );
 }

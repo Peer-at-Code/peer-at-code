@@ -2,98 +2,92 @@
 
 import { NavItem, navItems } from '@/lib/nav-items';
 import { cn } from '@/lib/utils';
-import Image from 'next/image';
 import { useSelectedLayoutSegment } from 'next/navigation';
-import { useState } from 'react';
-import Logo from '../../public/logo.webp';
 import AppLink from '../AppLink';
 import Icon from '../Icon';
 
-export default function Sidenav() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  function toggleSidenav() {
-    setIsOpen(!isOpen);
-  }
-
+export default function Sidenav({ isOpen, toggle }: { isOpen: boolean; toggle: () => void }) {
   return (
     <aside
       className={cn(
-        'relative flex h-24 flex-row justify-between bg-dark shadow-md transition-all duration-300 ease-in-out sm:h-screen sm:flex-col',
+        'absolute z-10 h-screen w-28 border-r border-highlight-primary bg-gradient-to-b from-primary-800 to-primary-900 shadow-md transition-all duration-300 ease-in-out sm:relative sm:flex sm:flex-col md:w-60',
         {
-          'sm:w-60': isOpen,
-          'w-full sm:w-28': !isOpen
+          'bottom-0 -translate-x-full sm:translate-x-0': !isOpen,
+          'bottom-0 w-full sm:w-28': isOpen
         }
       )}
     >
-      <div className="flex flex-row sm:flex-col">
-        <div className="flex px-4 pt-0 sm:block sm:items-center sm:pt-4">
-          <div className="flex items-center justify-between">
-            <AppLink href="/" className="hidden sm:block">
-              <Image src={Logo} alt="Peer-at Code Logo" className=" h-10 w-10" />
-            </AppLink>
-            <button
-              className="flex items-center justify-center rounded bg-light-dark p-1"
-              onClick={toggleSidenav}
-            >
-              <Icon
-                name="arrow-left-line"
-                className={cn('transition duration-300', {
-                  'rotate-0': isOpen,
-                  'rotate-180': !isOpen
-                })}
-              />
-            </button>
-          </div>
+      <div className="flex h-full flex-col">
+        <div className="flex p-6">
+          <AppLink className="truncate" href="/">
+            <h1>Peer-at Code</h1>
+          </AppLink>
         </div>
-        <div className="hidden px-4 pt-4 sm:block">
-          <hr className="border-light-dark" />
+        <div className=" px-4 ">
+          <hr className="border-highlight-primary" />
         </div>
-        <div className="hidden px-4 pt-4 sm:block">
+        <div className="px-4 pt-4">
           <ul className="space-y-4">
             {navItems.map((item) => (
               <li key={item.slug}>
-                <NavItem item={item} isOpen={isOpen} />
+                <NavItem item={item} isOpen={isOpen} onClick={toggle} />
               </li>
             ))}
           </ul>
         </div>
-      </div>
-      <div className="flex flex-row sm:flex-col">
-        <div className="px-4 py-4">
-          <button className="flex w-full items-center space-x-2 truncate rounded bg-light-dark p-3">
-            <Icon className="text-2xl" name="user-line" />
-            <span className="truncate">Hacktiviste</span>
-          </button>
+        <div className="px-4 pt-4">
+          <hr className="border-highlight-primary" />
+        </div>
+        <div className="px-4 pt-4">
+          <ul className="space-y-4">
+            <li>
+              <NavItem
+                item={{
+                  name: 'Tutoriels',
+                  slug: '/dashboard/tutorials',
+                  icon: 'question-line',
+                  disabled: false
+                }}
+                isOpen={isOpen}
+                onClick={toggle}
+              />
+            </li>
+          </ul>
         </div>
       </div>
     </aside>
   );
 }
 
-function NavItem({ item, isOpen }: { item: NavItem; isOpen: boolean }) {
+function NavItem({
+  item,
+  isOpen,
+  onClick
+}: {
+  item: NavItem;
+  isOpen: boolean;
+  onClick?: () => void;
+}) {
   const segment = useSelectedLayoutSegment();
   const isActive = segment?.split('/').pop() === item.slug || (item.slug === '' && !segment);
   return (
     <AppLink
       href={item.disabled ? '/dashboard' : `/dashboard/${item.slug}`}
-      className={cn('flex rounded-md px-3 py-3 text-sm font-medium', {
-        'bg-light-dark text-gray-400 hover:bg-light-dark/60 hover:text-white': !isActive,
-        'bg-blue-500 text-white': isActive,
+      className={cn('flex justify-center rounded-md px-3 py-3 text-sm md:justify-start', {
+        'text-muted hover:text-white': !isActive,
+        'bg-highlight-primary text-secondary': isActive,
         'text-gray-600 hover:text-gray-600': item.disabled,
-        'justify-start': isOpen,
-        'justify-center': !isOpen
+        'justify-center md:justify-start': isOpen,
+        'justify-start sm:justify-center': !isOpen
       })}
+      onClick={onClick}
       passHref
     >
-      <div
-        className={cn('flex items-center', {
-          'space-x-2': isOpen
-        })}
-      >
+      <div className="flex items-center space-x-2">
         <Icon className="text-2xl" name={item.icon} />
         <span
-          className={cn({
+          className={cn('hidden md:block', {
+            'block sm:hidden': isOpen,
             hidden: !isOpen
           })}
         >
