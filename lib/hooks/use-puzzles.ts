@@ -9,6 +9,6 @@ export function usePuzzles() {
   return useSWR('puzzles', () => getPuzzles());
 }
 
-export function usePuzzle(id: string) {
+export function usePuzzle(id: number) {
   return useSWR(`puzzles/${id}`, () => getPuzzle(id));
 }

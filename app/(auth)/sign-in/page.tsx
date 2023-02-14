@@ -1,15 +1,17 @@
 import AppLink from '@/ui/AppLink';
+import Icon from '@/ui/Icon';
+import UserAuthForm from '@/ui/UserAuthForm';
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className="flex h-screen w-full">
-      <div className="m-auto flex flex-col">
-        <h1 className="text-center text-4xl font-bold">
-          Amuse toi avec <span className="rounded-md bg-white p-1 text-black ">Next.js</span> et{' '}
-          <span className="text-blue-500">Tailwindcss</span> !
-        </h1>
-        <AppLink href="/dashboard">Dashboard</AppLink>
+    <>
+      <div className="flex flex-col justify-start space-y-4">
+        <AppLink href="/">
+          <Icon name="arrow-left-line" />
+        </AppLink>
+        <h2 className="mx-auto text-xl font-bold">Connexion</h2>
+        <UserAuthForm />
       </div>
-    </div>
+    </>
   );
 }

@@ -1,12 +1,12 @@
+'use client';
+
 import { cn } from '@/lib/utils';
+import Mardown from 'react-markdown';
 
-interface ToHTMLProps {
-  html: string;
-  className?: string;
-}
-
-export default function ToHTML({ html, className }: ToHTMLProps) {
+export default function ToHTML({ data, className }: { data: string; className?: string }) {
   return (
-    <div className={cn('select-none', className)} dangerouslySetInnerHTML={{ __html: html }} />
+    <div className={cn('select-none', className)}>
+      <Mardown>{data}</Mardown>
+    </div>
   );
 }

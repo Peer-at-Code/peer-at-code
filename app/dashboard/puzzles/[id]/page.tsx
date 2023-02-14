@@ -1,6 +1,6 @@
 import Puzzle from '@/ui/Puzzle';
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { id: number } }) {
   const { id } = params;
 
   return (

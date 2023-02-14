@@ -23,10 +23,7 @@ export default function Puzzles() {
               {data?.puzzles.map((puzzle) => (
                 <AppLink key={puzzle.id} href={`/dashboard/puzzles/${puzzle.id}`}>
                   <li className="group flex justify-between rounded-md bg-primary-700 p-4 font-code hover:bg-primary-600">
-                    <div className="flex space-x-4">
-                      <span className="">{puzzle.id}</span>
-                      <span className="font-semibold">{puzzle.name}</span>
-                    </div>
+                    <span className="font-semibold">{puzzle.name}</span>
                     <Icon
                       className="-translate-x-2 transform-gpu duration-300 group-hover:translate-x-0"
                       name="arrow-right-line"

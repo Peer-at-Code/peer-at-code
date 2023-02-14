@@ -1,33 +1,64 @@
 import Card from '@/ui/Card';
-import CardTable from '@/ui/CardTable';
 
 export default function Page() {
   return (
-    <div className="flex h-full w-full flex-col justify-between space-y-4">
-      <div className="flex flex-col space-y-6">
-        <div className="flex flex-col space-y-2">
-          <h2 className="text-2xl">Bienvenue!</h2>
+    <div className="flex h-screen flex-col space-y-4">
+      <section className="flex-col space-y-4">
+        <header>
+          <h3 className="text-xl font-semibold">Tableau de bord</h3>
           <p className="text-muted">Ceci est la page d&apos;accueil du dashboard</p>
-        </div>
-        <section className="flex justify-between space-x-4">
-          <Card />
-          <Card />
-          <Card />
-        </section>
-
-        <div className="flex">
-          <section className="flex max-h-96 w-full space-y-4">
-            <div className="flex justify-between space-x-4">
-              <CardTable />
-            </div>
-          </section>
-          <section className="flex max-h-96 w-full space-y-4">
-            <div className="flex justify-between space-x-4">
-              <CardTable />
-            </div>
-          </section>
-        </div>
-      </div>
+        </header>
+        <main className="flex-col justify-between space-x-0 space-y-4 md:flex md:flex-row md:space-x-4 md:space-y-0">
+          <Card title={'Hey salut'} data={'Xavier il aime les pieds'} />
+          <Card title="Nicolas le boss" data="Car il a fait ces cartes" />
+          <Card title="Https" data="Une histoire d'amour avec Xav" />
+        </main>
+      </section>
+      {/* TODO fix ça c'est pas responsive */}
+      {/* <section className="flex-col space-y-4">
+        <header>
+          <h3 className="text-xl font-semibold">Statistiques</h3>
+          <p className="text-muted">Ceci est la page d&apos;accueil du dashboard</p>
+        </header>
+        <main className="flex-col justify-between space-x-0 space-y-4 sm:flex sm:flex-row sm:space-x-4 sm:space-y-0">
+          <CardTable
+            puzzles={[
+              { name: 'Jour 0 | Save Conway Gadgetski', id: '1', content: '' },
+              { name: 'Jour 1 | Next', id: '2', content: '' },
+              { name: 'Jour 2 | Previous', id: '3', content: '' },
+              { name: 'Jour 3 | Next 1 loop', id: '4', content: '' },
+              { name: 'Jour 4 |  Next no loop + recursion', id: '5', content: '' },
+              { name: 'Jour 5  | N first rows', id: '6', content: '' },
+              { name: 'Week-end | Game of Life', id: '7', content: '' },
+              { name: 'Jour 0 | Save Conway Gadgetski', id: '1', content: '' },
+              { name: 'Jour 1 | Next', id: '2', content: '' },
+              { name: 'Jour 2 | Previous', id: '3', content: '' },
+              { name: 'Jour 3 | Next 1 loop', id: '4', content: '' },
+              { name: 'Jour 4 |  Next no loop + recursion', id: '5', content: '' },
+              { name: 'Jour 5  | N first rows', id: '6', content: '' },
+              { name: 'Week-end | Game of Life', id: '7', content: '' },
+              { name: 'Jour 0 | Save Conway Gadgetski', id: '1', content: '' },
+              { name: 'Jour 1 | Next', id: '2', content: '' },
+              { name: 'Jour 2 | Previous', id: '3', content: '' },
+              { name: 'Jour 3 | Next 1 loop', id: '4', content: '' },
+              { name: 'Jour 4 |  Next no loop + recursion', id: '5', content: '' },
+              { name: 'Jour 5  | N first rows', id: '6', content: '' },
+              { name: 'Week-end | Game of Life', id: '7', content: '' }
+            ]}
+          />
+          <CardTable
+            puzzles={[
+              { name: 'Jour 0 | Save Conway Gadgetski', id: '1', content: '' },
+              { name: 'Jour 1 | Next', id: '2', content: '' },
+              { name: 'Jour 2 | Previous', id: '3', content: '' },
+              { name: 'Jour 3 | Next 1 loop', id: '4', content: '' },
+              { name: 'Jour 4 |  Next no loop + recursion', id: '5', content: '' },
+              { name: 'Jour 5  | N first rows', id: '6', content: '' },
+              { name: 'Week-end | Game of Life', id: '7', content: '' }
+            ]}
+          />
+        </main>
+      </section> */}
     </div>
   );
 }

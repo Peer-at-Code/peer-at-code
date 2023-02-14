@@ -17,9 +17,9 @@ export default function Label({
     <label className={cn('flex flex-col gap-1 text-left', className)}>
       <span className="text-sm">
         {label}
-        {required && <span className="ml-1 text-orange-600">*</span>}
+        {required && <span className="ml-1 text-error">*</span>}
       </span>
-      {description && <span className="text-xs text-gray-500">{description}</span>}
+      {description && <span className="text-xs text-muted">{description}</span>}
       {children}
     </label>
   );

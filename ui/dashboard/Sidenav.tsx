@@ -44,9 +44,9 @@ export default function Sidenav({ isOpen, toggle }: { isOpen: boolean; toggle: (
               <NavItem
                 item={{
                   name: 'Tutoriels',
-                  slug: '/dashboard/tutorials',
+                  slug: 'tutorials',
                   icon: 'question-line',
-                  disabled: false
+                  disabled: true
                 }}
                 isOpen={isOpen}
                 onClick={toggle}
@@ -74,7 +74,7 @@ function NavItem({
     <AppLink
       href={item.disabled ? '/dashboard' : `/dashboard/${item.slug}`}
       className={cn('flex justify-center rounded-md px-3 py-3 text-sm md:justify-start', {
-        'text-muted hover:text-white': !isActive,
+        'text-muted hover:text-secondary': !isActive,
         'bg-highlight-primary text-secondary': isActive,
         'text-gray-600 hover:text-gray-600': item.disabled,
         'justify-center md:justify-start': isOpen,

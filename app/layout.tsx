@@ -8,7 +8,7 @@ import { type ReactNode } from 'react';
 
 const sans = localFont({
   variable: '--font-sans',
-  src: './fonts/Karrik-Regular.woff2',
+  src: './fonts/Karrik.woff2',
   weight: 'variable'
 });
 

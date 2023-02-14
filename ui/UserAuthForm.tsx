@@ -55,10 +55,7 @@ function AuthForm() {
   }
 
   return (
-    <form
-      className="bg-dark flex flex-col space-y-4 rounded-md p-6"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className="flex flex-col justify-center space-y-4" onSubmit={handleSubmit(onSubmit)}>
       {!isSignIn && (
         <Input
           label="Adresse e-mail"
@@ -97,7 +94,7 @@ function AuthForm() {
         {...register('password', { required: true })}
       />
       <Button type="submit" kind="brand">
-        Se connecter
+        {isSignIn ? 'Se connecter' : "S'inscrire"}
       </Button>
       {/* {!isSignIn && (
         <p className="items-center text-sm text-gray-400">
@@ -108,9 +105,9 @@ function AuthForm() {
           .
         </p>
       )} */}
-      <p className="flex flex-col items-center text-sm text-gray-400">
+      <p className="flex flex-col items-center text-sm text-muted">
         {isSignIn ? "Vous n'avez pas de compte?" : 'Vous possédez un compte?'}{' '}
-        <AppLink className="text-white underline" href={isSignIn ? '/sign-up' : '/sign-in'}>
+        <AppLink className="text-brand underline" href={isSignIn ? '/sign-up' : '/sign-in'}>
           {isSignIn ? "S'inscrire maintenant" : 'Se connecter'}
         </AppLink>
       </p>
