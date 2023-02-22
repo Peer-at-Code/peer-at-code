@@ -1,9 +1,13 @@
+import axios from 'axios';
+
 export const getChapters = async (): Promise<Chapter[]> => {
-  const req = await fetch(`http://170.75.166.204/chapters`);
+  const { data, status } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/chapters`, {
+    insecureHTTPParser: true
+  });
 
-  let chapters = await req.json();
+  let chapters = data;
 
-  if (!req.ok) {
+  if (status !== 200) {
     throw new Error('Failed to fetch puzzles');
   }
 
@@ -19,11 +23,14 @@ export const getChapters = async (): Promise<Chapter[]> => {
 };
 
 export const getPuzzlesByChapter = async (chapitre: number): Promise<Chapter | null> => {
-  const req = await fetch(`http://170.75.166.204/chapter/${chapitre}`);
+  const { data, status } = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/chapter/${chapitre}`,
+    { insecureHTTPParser: true }
+  );
 
-  const { puzzles, name, id } = await req.json();
+  const { puzzles, name, id } = data;
 
-  if (!req.ok) {
+  if (status !== 200) {
     throw new Error('Failed to fetch puzzles');
   }
 
@@ -54,11 +61,13 @@ export const getPuzzles = async (): Promise<{ chapters: Chapter[]; puzzles: Puzz
 };
 
 export const getPuzzle = async (id: number): Promise<Puzzle> => {
-  const req = await fetch(`http://170.75.166.204/puzzle/${id}`);
+  const { data, status } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/puzzle/${id}`, {
+    insecureHTTPParser: true
+  });
 
-  const puzzle = await req.json();
+  const puzzle = data;
 
-  if (!req.ok) {
+  if (status !== 200) {
     throw new Error('Failed to fetch puzzle');
   }
 

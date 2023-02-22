@@ -15,9 +15,14 @@ export default function UserAuthForm() {
 }
 
 type FormData = {
-  email?: string;
-  username: string;
-  password: string;
+  pseudo: string;
+  email: string;
+  passwd: string;
+  firstname: string;
+  lastname: string;
+  description: string;
+  sgroup: string;
+  avatar: string;
 };
 
 function AuthForm() {
@@ -28,9 +33,14 @@ function AuthForm() {
     setError
   } = useForm<FormData>({
     defaultValues: {
+      pseudo: '',
       email: '',
-      username: '',
-      password: ''
+      passwd: '',
+      firstname: '',
+      lastname: '',
+      description: '',
+      sgroup: '',
+      avatar: ''
     }
   });
 
@@ -39,59 +49,114 @@ function AuthForm() {
   const isSignIn = pathname.includes('sign-in');
 
   async function onSubmit(data: FormData) {
-    const res = await fetch(`http://170.75.166.204/${isSignIn ? 'login' : 'register'}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        ...data
-      })
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/${isSignIn ? 'login' : 'register'}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ...data
+        })
+      }
+    );
 
-    if (res.status === 200) {
+    const status = response.status;
+    const json = await response.json();
+
+    console.log(json, status);
+
+    if (status === 200) {
       router.push('/dashboard');
     }
   }
 
   return (
-    <form className="flex flex-col justify-center space-y-4" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="flex w-52 flex-col justify-center space-y-4 sm:w-72"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       {!isSignIn && (
-        <Input
-          label="Adresse e-mail"
-          type="email"
-          placeholder="Ex: peer-at@exemple.be"
-          required
-          error={
-            errors.email?.message
-            //   &&
-            //   (isSignIn ? (
-            //     <>
-            //       {translations.noAccountAssociated}{' '}
-            //       <AppLink className="underline" href="/sign-up">
-            //         {translations.signUpQuestion}
-            //       </AppLink>
-            //     </>
-            //   ) : (
-            //     errors.email.message
-            //   ))
-          }
-          {...register('email')}
-        />
+        <>
+          <Input
+            label="Adresse e-mail"
+            type="email"
+            placeholder="peer-at@exemple.be"
+            required
+            error={
+              errors.email?.message
+              //   &&
+              //   (isSignIn ? (
+              //     <>
+              //       {translations.noAccountAssociated}{' '}
+              //       <AppLink className="underline" href="/sign-up">
+              //         {translations.signUpQuestion}
+              //       </AppLink>
+              //     </>
+              //   ) : (
+              //     errors.email.message
+              //   ))
+            }
+            {...register('email')}
+          />
+          <Input
+            label="Nom"
+            type="lastname"
+            placeholder="Doe"
+            error={
+              errors.lastname?.message
+              //   &&
+              //   (isSignIn ? (
+              //     <>
+              //       {translations.noAccountAssociated}{' '}
+              //       <AppLink className="underline" href="/sign-up">
+              //         {translations.signUpQuestion}
+              //       </AppLink>
+              //     </>
+              //   ) : (
+              //     errors.email.message
+              //   ))
+            }
+            {...register('lastname')}
+          />
+          <Input
+            label="Prénom"
+            type="firstname"
+            placeholder="John"
+            error={
+              errors.firstname?.message
+              //   &&
+              //   (isSignIn ? (
+              //     <>
+              //       {translations.noAccountAssociated}{' '}
+              //       <AppLink className="underline" href="/sign-up">
+              //         {translations.signUpQuestion}
+              //       </AppLink>
+              //     </>
+              //   ) : (
+              //     errors.email.message
+              //   ))
+            }
+            {...register('firstname')}
+          />
+        </>
       )}
       <Input
         label="Nom d'utilisateur"
         type="text"
-        placeholder='Ex: "PeerAt"'
+        placeholder="PeerAt"
         required
-        {...register('username', { required: true })}
+        error={errors.passwd?.message}
+        {...register('pseudo')}
       />
       <Input
         label="Mot de passe"
         type="password"
-        placeholder='Ex: "MotDePasse123"'
+        placeholder="MotDePasse123"
         required
-        {...register('password', { required: true })}
+        error={errors.passwd?.message}
+        {...register('passwd')}
       />
       <Button type="submit" kind="brand">
         {isSignIn ? 'Se connecter' : "S'inscrire"}

@@ -1,18 +1,18 @@
 'use client';
 
-import { usePuzzle } from '@/lib/hooks/use-puzzles';
+import { Puzzle as PuzzleType } from '@/lib/puzzles';
 import { notFound } from 'next/navigation';
 
 import Button from './Button';
 import Input from './Input';
 import ToHTML from './ToHTML';
 
-export default function Puzzle({ id }: { id: number }) {
-  const { data: puzzle, isLoading } = usePuzzle(id);
+export default function Puzzle({ puzzle }: { puzzle: PuzzleType }) {
+  // const puzzle = getPuzzle(id);
 
-  if (isLoading) {
-    return <></>;
-  }
+  // if (isLoading) {
+  //   return <></>;
+  // }
 
   if (!puzzle) {
     notFound();

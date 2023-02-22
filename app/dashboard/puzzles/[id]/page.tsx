@@ -1,16 +1,21 @@
+import { getPuzzle, getPuzzles } from '@/lib/puzzles';
 import Puzzle from '@/ui/Puzzle';
+import { notFound } from 'next/navigation';
 
 export default async function Page({ params }: { params: { id: number } }) {
   const { id } = params;
 
-  return (
-    // <SWRFallback fallback={{ [`puzzles/${id}`]: puzzle }}>
-    <Puzzle id={id} />
-    // </SWRFallback>
-  );
+  const puzzle = await getPuzzle(id);
+
+  if (!puzzle) {
+    notFound();
+  }
+
+  return <Puzzle puzzle={puzzle} />;
 }
 
-// export async function generateStaticParams() {
-//   const { puzzles } = await getPuzzles();
-//   return puzzles.map(({ id }) => ({ params: { id } }));
-// }
+export async function generateStaticParams() {
+  const { puzzles } = await getPuzzles();
+  // every id is a number, but we need to return a string
+  return puzzles.map((puzzle) => ({ id: puzzle.id.toString() }));
+}

@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+
 import { getChapters, getPuzzle, getPuzzles } from '../puzzles';
 
 export function useChapters() {
