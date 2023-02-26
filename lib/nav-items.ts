@@ -25,7 +25,7 @@ export const navItems: NavItem[] = [
   },
   {
     name: 'Classement',
-    slug: 'ranking',
+    slug: 'leaderboard',
     icon: 'line-chart-line',
     disabled: false
   },

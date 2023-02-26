@@ -1,18 +1,11 @@
 'use client';
 
+import axios from 'axios';
 import { usePathname, useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import AppLink from './AppLink';
 import Button from './Button';
 import Input from './Input';
-
-export default function UserAuthForm() {
-  return (
-    <>
-      <AuthForm />
-    </>
-  );
-}
 
 type FormData = {
   pseudo: string;
@@ -25,7 +18,7 @@ type FormData = {
   avatar: string;
 };
 
-function AuthForm() {
+export default function UserAuthForm() {
   const {
     register,
     handleSubmit,
@@ -49,27 +42,57 @@ function AuthForm() {
   const isSignIn = pathname.includes('sign-in');
 
   async function onSubmit(data: FormData) {
-    const response = await fetch(
+    const { data: response, status } = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/${isSignIn ? 'login' : 'register'}`,
       {
-        method: 'POST',
+        data: {
+          pseudo: data.pseudo,
+          email: data.email,
+          passwd: data.passwd,
+          firstname: data.firstname,
+          lastname: data.lastname,
+          description: data.description,
+          sgroup: data.sgroup,
+          avatar: data.avatar
+        },
         headers: {
           'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          ...data
-        })
-      }
+        }
+      },
+      { insecureHTTPParser: true }
     );
 
-    const status = response.status;
-    const json = await response.json();
-
-    console.log(json, status);
+    console.log('response ', response);
 
     if (status === 200) {
       router.push('/dashboard');
     }
+
+    // const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     pseudo: data.pseudo,
+    //     email: data.email,
+    //     passwd: data.passwd,
+    //     firstname: data.firstname,
+    //     lastname: data.lastname,
+    //     sgroup: data.sgroup,
+    //     avatar: data.avatar
+    //   })
+    // });
+
+    // const result = await response.json();
+
+    // if (response.status !== 200) {
+    //   setError('email', { message: result.message });
+    // }
+
+    // if (response.status === 200) {
+    //   router.push('/dashboard');
+    // }
   }
 
   return (

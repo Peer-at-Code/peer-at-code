@@ -1,5 +1,9 @@
 import UserAuthForm from '@/ui/UserAuthForm';
 
+export const metadata = {
+  title: 'Inscription - Peer-at Code'
+};
+
 export default function Page() {
   return (
     <>
