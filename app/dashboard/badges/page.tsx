@@ -1,5 +1,9 @@
 import Badge from '@/ui/Badge';
 
+export const metadata = {
+  title: 'Mes badges - Peer-at Code'
+};
+
 export default function Page() {
   // TODO: Fetch badges from API and display them
   return (

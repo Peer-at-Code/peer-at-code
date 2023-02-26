@@ -19,7 +19,7 @@ const options = [
 ];
 
 export const metadata = {
-  title: 'Tableau des scores',
+  title: 'Tableau des scores - Peer-at Code',
   description: 'Suivez la progression des élèves en direct'
 };
 
