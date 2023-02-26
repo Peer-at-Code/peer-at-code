@@ -29,7 +29,7 @@ export default async function Page() {
   return (
     <div className="flex h-full w-full flex-col space-y-4">
       <div className="w-full">
-        <section className="flex flex-col space-y-8">
+        <section className="flex flex-col space-y-4">
           <header className="flex items-center justify-between">
             <div>
               <h3 className="text-xl font-semibold">Tableau des scores</h3>
