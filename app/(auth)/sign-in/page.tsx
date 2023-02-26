@@ -1,5 +1,9 @@
 import UserAuthForm from '@/ui/UserAuthForm';
 
+export const metadata = {
+  title: 'Connexion - Peer-at Code'
+};
+
 export default function Page() {
   return (
     <>

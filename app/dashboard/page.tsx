@@ -1,5 +1,8 @@
 import Card from '@/ui/Card';
-import CardTable from '@/ui/CardTable';
+
+export const metadata = {
+  title: 'Dashboard - Peer-at Code'
+};
 
 export default function Page() {
   return (
