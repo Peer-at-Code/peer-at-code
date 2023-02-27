@@ -1,3 +1,3 @@
 export default function ErrorMessage({ children }: { children: React.ReactNode }) {
-  return <p className="text-xs	text-orange-500">{children}</p>;
+  return <p className="text-xs text-warning">{children}</p>;
 }
