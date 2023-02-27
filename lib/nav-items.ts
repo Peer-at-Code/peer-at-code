@@ -1,9 +1,11 @@
 /**
- * Un élément de navigation.
+ * A navigation item.
+ *
  * @typedef {Object} NavItem
- * @property {string} name - Le nom de l'élément de navigation.
- * @property {string} slug - Le slug de l'élément de navigation.
- * @property {boolean} [disabled] - Si l'élément de navigation est désactivé.
+ *
+ * @property {string} name - The name of the navigation item.
+ * @property {string} slug - The slug of the navigation item.
+ * @property {boolean} [disabled] - Whether the navigation item is disabled.
  */
 export type NavItem = {
   name: string;
@@ -13,7 +15,8 @@ export type NavItem = {
 };
 
 /**
- * Les éléments de navigation.
+ * Navigation items.
+ *
  * @type {NavItem[]}
  */
 export const navItems: NavItem[] = [

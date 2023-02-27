@@ -2,7 +2,8 @@ import AppLink from '@/ui/AppLink';
 import Console from '@/ui/Console';
 import Image from 'next/image';
 
-export default function Home() {
+export default function Page() {
+  // TODO: Fix this (image)
   return (
     <div>
       <div className="flex h-screen w-full">

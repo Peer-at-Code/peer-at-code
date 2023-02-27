@@ -1,19 +1,33 @@
-import { type NextRequest, NextResponse } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
+import { getURL } from './lib/utils';
 
 /**
  * Permet de créer un middleware Next.js qui sera exécuté avant chaque requête.
  *
- * @param req - La requête.
+ * @param req - La requête Next.js
  */
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
-  console.log('Res', res);
+
+  // on donne accès à l'API depuis n'importe quelle origine
+  res.headers.set('Access-Control-Allow-Origin', '*');
+  res.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+
+  const token = req.cookies.get('token')?.value;
+
+  if (req.nextUrl.pathname.includes('dashboard') && !token)
+    return NextResponse.redirect(getURL('/sign-in'));
+  else if (req.nextUrl.pathname.includes('sign') && token)
+    return NextResponse.redirect(getURL('/dashboard'));
+
+  res.headers.set('Authorization', `Bearer ${token}`);
+
   return res;
 }
 
 export const config = {
   matcher: [
     // On exclut les routes de l'API, les fichiers statiques, les images, les assets, le favicon et le service worker.
-    // '/((?!api|_next/static|_next/image|assets|favicon|sw.js).*)'
+    '/((?!api|_next/static|_next/image|assets|favicon|sw.js).*)'
   ]
 };
