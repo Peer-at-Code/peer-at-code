@@ -1,7 +1,8 @@
 'use client';
 
-import axios from 'axios';
+import cookies from 'js-cookie';
 import { usePathname, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import AppLink from './AppLink';
 import Button from './Button';
@@ -40,60 +41,47 @@ export default function UserAuthForm() {
   const router = useRouter();
   const pathname = usePathname()!;
   const isSignIn = pathname.includes('sign-in');
+  const token = cookies.get('token');
 
   async function onSubmit(data: FormData) {
-    const { data: response, status } = await axios.post(
+    const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/${isSignIn ? 'login' : 'register'}`,
       {
-        data: {
-          pseudo: data.pseudo,
-          email: data.email,
-          passwd: data.passwd,
-          firstname: data.firstname,
-          lastname: data.lastname,
-          description: data.description,
-          sgroup: data.sgroup,
-          avatar: data.avatar
-        },
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      },
-      { insecureHTTPParser: true }
+        method: 'POST',
+        body: JSON.stringify(data)
+      }
     );
 
-    console.log('response ', response);
-
-    if (status === 200) {
-      router.push('/dashboard');
+    if (!isSignIn) {
+      const { username_valid, email_valid } = await res.json();
+      if (!username_valid) {
+        setError('pseudo', {
+          type: 'manual',
+          message: "Nom d'utilisateur indisponible"
+        });
+      }
+      if (!email_valid) {
+        setError('email', {
+          type: 'manual',
+          message: 'Email déjà utilisé'
+        });
+      }
     }
 
-    // const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     pseudo: data.pseudo,
-    //     email: data.email,
-    //     passwd: data.passwd,
-    //     firstname: data.firstname,
-    //     lastname: data.lastname,
-    //     sgroup: data.sgroup,
-    //     avatar: data.avatar
-    //   })
-    // });
-
-    // const result = await response.json();
-
-    // if (response.status !== 200) {
-    //   setError('email', { message: result.message });
-    // }
-
-    // if (response.status === 200) {
-    //   router.push('/dashboard');
-    // }
+    if (res.ok) {
+      const token = res.headers.get('Authorization')?.split(' ')[1];
+      if (token) cookies.set('token', token);
+    } else {
+      setError('passwd', {
+        type: 'manual',
+        message: "Nom d'utilisateur ou mot de passe incorrect"
+      });
+    }
   }
+
+  useEffect(() => {
+    if (token) router.push('/dashboard');
+  }, [token]);
 
   return (
     <form
@@ -107,60 +95,21 @@ export default function UserAuthForm() {
             type="email"
             placeholder="peer-at@exemple.be"
             required
-            error={
-              errors.email?.message
-              //   &&
-              //   (isSignIn ? (
-              //     <>
-              //       {translations.noAccountAssociated}{' '}
-              //       <AppLink className="underline" href="/sign-up">
-              //         {translations.signUpQuestion}
-              //       </AppLink>
-              //     </>
-              //   ) : (
-              //     errors.email.message
-              //   ))
-            }
+            error={errors.email?.message}
             {...register('email')}
           />
           <Input
             label="Nom"
             type="lastname"
             placeholder="Doe"
-            error={
-              errors.lastname?.message
-              //   &&
-              //   (isSignIn ? (
-              //     <>
-              //       {translations.noAccountAssociated}{' '}
-              //       <AppLink className="underline" href="/sign-up">
-              //         {translations.signUpQuestion}
-              //       </AppLink>
-              //     </>
-              //   ) : (
-              //     errors.email.message
-              //   ))
-            }
+            error={errors.lastname?.message}
             {...register('lastname')}
           />
           <Input
             label="Prénom"
             type="firstname"
             placeholder="John"
-            error={
-              errors.firstname?.message
-              //   &&
-              //   (isSignIn ? (
-              //     <>
-              //       {translations.noAccountAssociated}{' '}
-              //       <AppLink className="underline" href="/sign-up">
-              //         {translations.signUpQuestion}
-              //       </AppLink>
-              //     </>
-              //   ) : (
-              //     errors.email.message
-              //   ))
-            }
+            error={errors.firstname?.message}
             {...register('firstname')}
           />
         </>
@@ -170,7 +119,7 @@ export default function UserAuthForm() {
         type="text"
         placeholder="PeerAt"
         required
-        error={errors.passwd?.message}
+        error={errors.pseudo?.message}
         {...register('pseudo')}
       />
       <Input
@@ -184,21 +133,23 @@ export default function UserAuthForm() {
       <Button type="submit" kind="brand">
         {isSignIn ? 'Se connecter' : "S'inscrire"}
       </Button>
-      {/* {!isSignIn && (
-        <p className="items-center text-sm text-gray-400">
-          En cliquant sur continuer, vous acceptez les{' '}
-          <AppLink className="text-white underline" href="/privacy-policy" target="_blank">
-            Politique de confidentialité
+      <div className="flex flex-col text-center">
+        {!isSignIn && (
+          <p className="flex flex-col items-center text-sm text-muted">
+            En cliquant sur continuer, vous acceptez les{' '}
+            <AppLink className="text-white underline" href="/privacy-policy" target="_blank">
+              Politique de confidentialité
+            </AppLink>
+            .
+          </p>
+        )}
+        <p className="flex flex-col items-center text-sm text-muted">
+          {isSignIn ? "Vous n'avez pas de compte?" : 'Vous possédez un compte?'}{' '}
+          <AppLink className="text-brand underline" href={isSignIn ? '/sign-up' : '/sign-in'}>
+            {isSignIn ? "S'inscrire maintenant" : 'Se connecter'}
           </AppLink>
-          .
         </p>
-      )} */}
-      <p className="flex flex-col items-center text-sm text-muted">
-        {isSignIn ? "Vous n'avez pas de compte?" : 'Vous possédez un compte?'}{' '}
-        <AppLink className="text-brand underline" href={isSignIn ? '/sign-up' : '/sign-in'}>
-          {isSignIn ? "S'inscrire maintenant" : 'Se connecter'}
-        </AppLink>
-      </p>
+      </div>
     </form>
   );
 }
