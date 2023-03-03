@@ -1,10 +1,9 @@
 import { getPuzzle } from '@/lib/puzzles';
 import Puzzle from '@/ui/Puzzle';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-export async function generateMetadata({ params }: { params: { id: number } }) {
+export async function generateMetadata({ params }: { params: { id: number } }): Promise<Metadata> {
   const { id } = params;
 
   const puzzle = await getPuzzle(id);
