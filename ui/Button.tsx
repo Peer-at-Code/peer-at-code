@@ -14,7 +14,7 @@ const Button = forwardRef<
       {
         'bg-highlight-primary hover:bg-highlight-primary/60': kind === 'default',
         'bg-error hover:bg-error/60': kind === 'danger',
-        'bg-brand hover:bg-brand/60': kind === 'brand'
+        'bg-gradient-to-tl from-brand to-brand-accent hover:bg-opacity-80': kind === 'brand'
       },
       className
     )}

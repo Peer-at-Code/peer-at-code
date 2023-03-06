@@ -20,8 +20,6 @@ export async function middleware(req: NextRequest) {
   else if (req.nextUrl.pathname.includes('sign') && token)
     return NextResponse.redirect(getURL('/dashboard'));
 
-  res.headers.set('Authorization', `Bearer ${token}`);
-
   return res;
 }
 

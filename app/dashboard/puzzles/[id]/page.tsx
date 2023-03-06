@@ -23,8 +23,10 @@ export default async function Page({ params }: { params: { id: number } }) {
   return <Puzzle puzzle={puzzle} />;
 }
 
+// export const dynamicParams = true;
+
 // export async function generateStaticParams() {
 //   const { puzzles } = await getPuzzles();
 //   // every id is a number, but we need to return a string
-//   return puzzles.map((puzzle) => ({ id: puzzle.id.toString() }));
+//   return puzzles.flatMap((puzzle) => ({ id: puzzle.id.toString() }));
 // }

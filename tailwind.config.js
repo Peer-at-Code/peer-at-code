@@ -29,8 +29,8 @@ module.exports = {
           0: 'hsl(258deg 8% 100%)'
         },
         brand: {
-          DEFAULT: '#1c56cb',
-          accent: '#236bfe'
+          DEFAULT: '#5049ca',
+          accent: '#913fb6'
         },
         success: {
           DEFAULT: 'hsl(104deg 39% 59%)',
@@ -55,11 +55,6 @@ module.exports = {
         highlight: {
           primary: 'hsl(258deg 15% 17%)',
           secondary: 'hsl(258deg 10% 46%)'
-        },
-        product: {
-          ignite: 'hsl(8deg 89% 57%)',
-          pipe: 'hsl(214deg 100% 58%)',
-          channels: 'hsl(46deg 74% 51%)'
         }
       },
       backgroundColor: {

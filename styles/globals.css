@@ -5,6 +5,5 @@
 @layer components {
   .console {
     @apply relative top-0.5 inline-block;
-    /* make it hidden then visible every seconde */
   }
 }

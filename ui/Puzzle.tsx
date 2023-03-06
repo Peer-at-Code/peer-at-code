@@ -3,6 +3,7 @@
 import type { Puzzle as PuzzleType } from '@/lib/puzzles';
 import { notFound } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import cookies from 'js-cookie';
 
 import Button from './Button';
 import Input from './Input';
@@ -10,6 +11,7 @@ import ToHTML from './ToHTML';
 
 type PuzzleData = {
   answer: string;
+  filename: string;
   code_file: File[];
 };
 
@@ -26,6 +28,7 @@ export default function Puzzle({ puzzle }: { puzzle: PuzzleType }) {
   } = useForm<PuzzleData>({
     defaultValues: {
       answer: '',
+      filename: '',
       code_file: undefined
     }
   });
@@ -34,11 +37,15 @@ export default function Puzzle({ puzzle }: { puzzle: PuzzleType }) {
     const formData = new FormData();
 
     formData.append('answer', data.answer);
+    formData.append('filename', data.code_file[0].name);
     formData.append('code_file', data.code_file[0]);
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/puzzleResponse/${puzzle.id}`, {
       method: 'POST',
-      body: formData
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${cookies.get('token')}}`
+      }
     });
 
     if (res.ok) {

@@ -17,8 +17,6 @@ export const getChapters = async (): Promise<Chapter[]> => {
 
   chapters = chapters.filter((chapter: Chapter) => chapter.id !== 0);
 
-  console.log(chapters);
-
   return chapters as Chapter[];
 };
 
