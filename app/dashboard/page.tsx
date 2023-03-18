@@ -1,10 +1,12 @@
-import Card from '@/ui/Card';
+'use client';
 
-export const metadata = {
-  title: 'Dashboard - Peer-at Code'
-};
+import { useMe } from '@/lib/hooks/use-players';
+import Card from '@/ui/Card';
+import cookies from 'js-cookie';
 
 export default function Page() {
+  const token = cookies.get('token');
+  const { data: me, isLoading } = useMe({ token: token! });
   return (
     <div className="flex h-full w-full flex-col space-y-4">
       <div className="w-full">
@@ -14,9 +16,24 @@ export default function Page() {
             <p className="text-muted">Ceci est la page d&apos;accueil du dashboard</p>
           </header>
           <main className="flex-col justify-between space-x-0 space-y-4 md:flex md:flex-row md:space-x-6 md:space-y-0">
-            <Card icon="pie-chart-line" title="46" data="Puzzles" />
-            <Card icon="award-line" title="3" data="Badges" />
-            <Card icon="bar-chart-line" title="10 ème" data="Classement" />
+            <Card
+              isLoading={isLoading}
+              icon="pie-chart-line"
+              title="Puzzles"
+              data={me?.completions}
+            />
+            <Card
+              isLoading={isLoading}
+              icon="award-line"
+              title="Badges"
+              data={me?.badges || 'Aucun'}
+            />
+            <Card
+              isLoading={isLoading}
+              icon="bar-chart-line"
+              title="Score (classement plus tard)"
+              data={me?.score}
+            />
           </main>
         </section>
       </div>

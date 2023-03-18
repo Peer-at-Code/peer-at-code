@@ -4,8 +4,9 @@ import { usePuzzles } from '@/lib/hooks/use-puzzles';
 import AppLink from './AppLink';
 import Icon from './Icon';
 
-export default function Puzzles() {
-  const { data, isLoading } = usePuzzles();
+export default function Puzzles({ token }: { token: string }) {
+  const { data, isLoading } = usePuzzles({ token });
+  console.log(data);
   return (
     <>
       {(!isLoading &&
@@ -48,7 +49,7 @@ export default function Puzzles() {
                 />
               </div>
               <ul className="flex flex-col space-y-4">
-                {[...Array(7).keys()].map((j) => (
+                {[...Array(6).keys()].map((j) => (
                   <span
                     key={j}
                     className="inline-block h-14 animate-pulse rounded-lg bg-primary-600"

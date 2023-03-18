@@ -2,7 +2,7 @@
 
 import cookies from 'js-cookie';
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import AppLink from './AppLink';
 import Button from './Button';
@@ -37,13 +37,14 @@ export default function UserAuthForm() {
       avatar: ''
     }
   });
-
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const pathname = usePathname()!;
   const isSignIn = pathname.includes('sign-in');
-  const token = cookies.get('token');
 
   async function onSubmit(data: FormData) {
+    setIsLoading(true);
+
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/${isSignIn ? 'login' : 'register'}`,
       {
@@ -59,18 +60,21 @@ export default function UserAuthForm() {
           type: 'manual',
           message: "Nom d'utilisateur indisponible"
         });
+        setIsLoading(false);
       }
       if (!email_valid) {
         setError('email', {
           type: 'manual',
           message: 'Email déjà utilisé'
         });
+        setIsLoading(false);
       }
     }
 
     if (res.ok) {
       const token = res.headers.get('Authorization')?.split(' ')[1];
       if (token) cookies.set('token', token);
+      router.refresh();
     } else {
       setError('passwd', {
         type: 'manual',
@@ -78,10 +82,6 @@ export default function UserAuthForm() {
       });
     }
   }
-
-  useEffect(() => {
-    if (token) router.push('/dashboard');
-  }, [token]);
 
   return (
     <form
@@ -100,14 +100,14 @@ export default function UserAuthForm() {
           />
           <Input
             label="Nom"
-            type="lastname"
+            type="text"
             placeholder="Doe"
             error={errors.lastname?.message}
             {...register('lastname')}
           />
           <Input
             label="Prénom"
-            type="firstname"
+            type="text"
             placeholder="John"
             error={errors.firstname?.message}
             {...register('firstname')}
@@ -130,7 +130,7 @@ export default function UserAuthForm() {
         error={errors.passwd?.message}
         {...register('passwd')}
       />
-      <Button type="submit" kind="brand">
+      <Button type="submit" kind="brand" disabled={isLoading}>
         {isSignIn ? 'Se connecter' : "S'inscrire"}
       </Button>
       <div className="flex flex-col text-center">

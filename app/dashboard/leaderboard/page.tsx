@@ -1,4 +1,5 @@
 import Leaderboard from '@/ui/Leaderboard';
+import { cookies } from 'next/headers';
 
 export const metadata = {
   title: 'Tableau des scores - Peer-at Code',
@@ -6,5 +7,6 @@ export const metadata = {
 };
 
 export default async function Page() {
-  return <Leaderboard />;
+  const token = cookies().get('token')?.value;
+  return <Leaderboard token={token!} />;
 }

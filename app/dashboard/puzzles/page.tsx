@@ -1,3 +1,5 @@
+import { cookies } from 'next/headers';
+
 import Puzzles from '@/ui/Puzzles';
 
 export const metadata = {
@@ -5,9 +7,12 @@ export const metadata = {
 };
 
 export default async function Page() {
+  const cookieStore = cookies();
+  const token = cookieStore.get('token')?.value;
+
   return (
     <div className="flex flex-col space-y-6">
-      <Puzzles />
+      <Puzzles token={token!} />
     </div>
   );
 }

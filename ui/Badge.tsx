@@ -4,6 +4,12 @@ import { cn } from '@/lib/utils';
 
 export type Difficulty = 'easy' | 'medium' | 'hard';
 
+export const DIFFICULTY = {
+  1: 'easy',
+  2: 'medium',
+  3: 'hard'
+}
+
 export default function Badge({
   title,
   path,
