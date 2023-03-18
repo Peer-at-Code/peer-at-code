@@ -10,7 +10,8 @@ const Select = forwardRef<
     error?: React.ReactNode;
     description?: string;
     options: { value: string; title: string }[];
-  } & Partial<ReturnType<UseFormRegister<any>>>
+  }
+  //& Partial<ReturnType<UseFormRegister<any>>></HTMLSelectElement>
 >(({ options, className, label, description, error, ...props }, ref) => (
   <>
     <Label label={label} description={description} required={props.required} className={className}>

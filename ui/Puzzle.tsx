@@ -73,12 +73,14 @@ export default function Puzzle({ puzzle }: { puzzle: PuzzleType }) {
             label="Réponse"
             type="text"
             placeholder="12"
+            required
             {...register('answer')}
           />
           <Input
             className="h-16 w-full sm:w-1/3"
             label="Code"
             type="file"
+            required
             accept=".py,.js,.ts,.java,.rust,.c"
             {...register('code_file')}
           />

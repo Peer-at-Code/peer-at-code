@@ -1,8 +1,10 @@
-import axios from 'axios';
+import fetcher from './fetcher';
 
-export const getScores = async (): Promise<Score[]> => {
-  const { data, status } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/leaderboard`, {
-    insecureHTTPParser: true
+export const getScores = async ({ token }: { token: string }): Promise<Score[]> => {
+  const { data, status } = await fetcher.get(`/leaderboard`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
   });
 
   const scores = data;
@@ -24,4 +26,5 @@ export type Score = {
   completions: number;
   pseudo: string;
   group: string;
+  avatar: string;
 };

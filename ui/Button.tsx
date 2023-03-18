@@ -10,11 +10,12 @@ const Button = forwardRef<
   <button
     ref={ref}
     className={cn(
-      'inline-flex items-center justify-center rounded-md border-0 px-5 py-2.5 text-center text-sm font-medium outline-none transition-colors focus:outline-none focus:ring-0 disabled:opacity-50',
+      'inline-flex items-center justify-center rounded-md border-0 px-5 py-2.5 text-center text-sm font-medium outline-none transition-colors focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50',
       {
         'bg-highlight-primary hover:bg-highlight-primary/60': kind === 'default',
         'bg-error hover:bg-error/60': kind === 'danger',
-        'bg-gradient-to-tl from-brand to-brand-accent hover:bg-opacity-80': kind === 'brand'
+        'bg-gradient-to-tl from-brand to-brand-accent transition-opacity hover:opacity-90':
+          kind === 'brand'
       },
       className
     )}
