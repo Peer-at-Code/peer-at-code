@@ -60,14 +60,12 @@ export default function UserAuthForm() {
           type: 'manual',
           message: "Nom d'utilisateur indisponible"
         });
-        setIsLoading(false);
       }
       if (!email_valid) {
         setError('email', {
           type: 'manual',
           message: 'Email déjà utilisé'
         });
-        setIsLoading(false);
       }
     }
 
@@ -81,6 +79,8 @@ export default function UserAuthForm() {
         message: "Nom d'utilisateur ou mot de passe incorrect"
       });
     }
+
+    setIsLoading(false);
   }
 
   return (
