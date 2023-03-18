@@ -1,8 +1,10 @@
-import axios from 'axios';
+import fetcher from './fetcher';
 
-export const getChapters = async (): Promise<Chapter[]> => {
-  const { data, status } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/chapters`, {
-    insecureHTTPParser: true
+export const getChapters = async ({ token }: { token: string }): Promise<Chapter[]> => {
+  const { data, status } = await fetcher.get(`/chapters`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
   });
 
   let chapters = data;
@@ -20,36 +22,44 @@ export const getChapters = async (): Promise<Chapter[]> => {
   return chapters as Chapter[];
 };
 
-export const getPuzzlesByChapter = async (chapitre: number): Promise<Chapter | null> => {
-  const { data, status } = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/chapter/${chapitre}`,
-    { insecureHTTPParser: true }
-  );
+export const getChapter = async ({
+  token,
+  id
+}: {
+  token: string;
+  id: number;
+}): Promise<Chapter | null> => {
+  const { data, status } = await fetcher.get(`/chapter/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 
-  const { puzzles, name, id } = data;
+  const chapter = data;
 
   if (status !== 200) {
     throw new Error('Failed to fetch puzzles');
   }
 
-  if (!puzzles) {
+  if (!chapter) {
     return null;
   }
 
-  return {
-    name,
-    id,
-    puzzles
-  };
+  return chapter as Chapter;
 };
 
-export const getPuzzles = async (): Promise<{ chapters: Chapter[]; puzzles: Puzzle[] }> => {
-  const chapters = await getChapters();
-  let puzzles: Puzzle[] = [];
+export const getPuzzles = async ({
+  token
+}: {
+  token: string;
+}): Promise<{ chapters: Chapter[]; puzzles: Puzzle[] }> => {
+  const chapters = await getChapters({ token });
+  const puzzles: Puzzle[] = [];
 
   for (const chapter of chapters) {
-    const puzzlesByChapter = await getPuzzlesByChapter(chapter.id);
-    puzzles = [...puzzles, ...puzzlesByChapter!.puzzles];
+    const puzzlesByChapter = await getChapter({ token, id: chapter.id });
+    if (!puzzlesByChapter?.puzzles) continue;
+    puzzles.push(...puzzlesByChapter!.puzzles);
   }
 
   return {
@@ -58,9 +68,11 @@ export const getPuzzles = async (): Promise<{ chapters: Chapter[]; puzzles: Puzz
   };
 };
 
-export const getPuzzle = async (id: number): Promise<Puzzle> => {
-  const { data, status } = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/puzzle/${id}`, {
-    insecureHTTPParser: true
+export const getPuzzle = async ({ token, id }: { token: string; id: number }): Promise<Puzzle> => {
+  const { data, status } = await fetcher.get(`/puzzle/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
   });
 
   const puzzle = data;
@@ -77,8 +89,8 @@ export const getPuzzle = async (id: number): Promise<Puzzle> => {
 };
 
 export type Puzzle = {
-  name: string;
   id: number;
+  name: string;
   content: string;
 };
 
