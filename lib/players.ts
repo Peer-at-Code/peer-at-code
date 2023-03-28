@@ -28,14 +28,26 @@ export const getPlayer = async ({
 
 export type Player = {
   email: string;
+  pseudo: string;
   firstnames: string;
   lastname: string;
   description: string;
   avatar: string;
-  group: string;
+  groups: Group[];
   score: number;
   tries: number;
   completions: number;
-  pseudo: string;
-  badges: any[];
+  rank: number;
+  badges: Badge[] | null;
+};
+
+export type Badge = {
+  name: string;
+  level: number;
+  logo?: string;
+};
+
+export type Group = {
+  name: string;
+  chapter?: number;
 };

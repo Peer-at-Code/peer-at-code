@@ -1,10 +1,10 @@
 'use client';
 
-import { useMe } from '@/lib/hooks/use-players';
+import { UserContext } from '@/context/user';
 import { titleCase } from '@/lib/utils';
 import cookies from 'js-cookie';
 import { useRouter, useSelectedLayoutSegment } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import AvatarComponent from '../Avatar';
 import Icon from '../Icon';
 import Popover from '../Popover';
@@ -14,9 +14,7 @@ export default function Usernav({ isOpen, toggle }: { isOpen: boolean; toggle: (
   const router = useRouter();
   const segment = useSelectedLayoutSegment();
 
-  const token = cookies.get('token');
-
-  const { data: me, isLoading } = useMe({ token: token! });
+  const { data: me, isLoading } = useContext(UserContext);
 
   useEffect(() => {
     if (isOpen) {

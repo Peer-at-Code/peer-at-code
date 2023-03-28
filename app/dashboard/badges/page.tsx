@@ -1,11 +1,11 @@
-import Badge from '@/ui/Badge';
+'use client';
 
-export const metadata = {
-  title: 'Mes badges - Peer-at Code'
-};
+import { UserContext } from '@/context/user';
+import Badge from '@/ui/Badge';
+import { useContext } from 'react';
 
 export default function Page() {
-  // TODO: Fetch badges from API and display them
+  const { data: me } = useContext(UserContext);
   return (
     <div className="flex h-full w-full flex-col space-y-4">
       <div className="w-full">
@@ -18,15 +18,19 @@ export default function Page() {
           </header>
           <main className="flex flex-col justify-between space-x-0 space-y-4">
             <div className="flex space-x-2">
-              <Badge title="Je suis un teste" path="/assets/badges/java.png" alt="je suis un alt" />
-              <Badge title="Je suis un teste" path="/assets/badges/java.png" alt="je suis un alt" />
-              <Badge
-                title="Peer-at What ?"
-                path="/assets/badges/java.png"
-                type="hard"
-                alt="je suis un alt"
-                earned
-              />
+              {me?.badges ? (
+                me?.badges.map((badge, i) => (
+                  <Badge
+                    key={i}
+                    name={badge.name}
+                    src={badge.logo || '/assets/badges/java.png'}
+                    alt={badge.name}
+                    level={badge.level}
+                  />
+                ))
+              ) : (
+                <p className="text-muted">Aucun badge</p>
+              )}
             </div>
           </main>
         </section>

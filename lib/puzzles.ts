@@ -7,7 +7,7 @@ export const getChapters = async ({ token }: { token: string }): Promise<Chapter
     }
   });
 
-  let chapters = data;
+  const chapters = data;
 
   if (status !== 200) {
     throw new Error('Failed to fetch puzzles');
@@ -16,8 +16,6 @@ export const getChapters = async ({ token }: { token: string }): Promise<Chapter
   if (!chapters) {
     return [];
   }
-
-  chapters = chapters.filter((chapter: Chapter) => chapter.id !== 0);
 
   return chapters as Chapter[];
 };
@@ -48,24 +46,17 @@ export const getChapter = async ({
   return chapter as Chapter;
 };
 
-export const getPuzzles = async ({
-  token
-}: {
-  token: string;
-}): Promise<{ chapters: Chapter[]; puzzles: Puzzle[] }> => {
+export const getPuzzles = async ({ token }: { token: string }): Promise<Chapter[]> => {
   const chapters = await getChapters({ token });
-  const puzzles: Puzzle[] = [];
 
-  for (const chapter of chapters) {
-    const puzzlesByChapter = await getChapter({ token, id: chapter.id });
-    if (!puzzlesByChapter?.puzzles) continue;
-    puzzles.push(...puzzlesByChapter!.puzzles);
+  for (let i = 0; i < chapters.length; i++) {
+    const chapter = chapters[i];
+    const chapterData = await getChapter({ token, id: chapter.id });
+    if (!chapterData) continue;
+    chapters[i].puzzles = chapterData.puzzles;
   }
 
-  return {
-    chapters: chapters as Chapter[],
-    puzzles: puzzles as Puzzle[]
-  };
+  return chapters as Chapter[];
 };
 
 export const getPuzzle = async ({ token, id }: { token: string; id: number }): Promise<Puzzle> => {
@@ -92,10 +83,17 @@ export type Puzzle = {
   id: number;
   name: string;
   content: string;
+  tags: Tag[] | null;
 };
 
 export type Chapter = {
-  name: string;
   id: number;
+  name: string;
   puzzles: Puzzle[];
+  startDay?: string;
+  endDay?: string;
+};
+
+export type Tag = {
+  name: string;
 };

@@ -9,10 +9,6 @@ import { getURL } from './lib/utils';
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
-  // on donne accès à l'API depuis n'importe quelle origine
-  res.headers.set('Access-Control-Allow-Origin', '*');
-  res.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-
   const token = req.cookies.get('token')?.value;
 
   if (req.nextUrl.pathname.includes('dashboard') && !token)

@@ -2,42 +2,37 @@ import Image from 'next/image';
 
 import { cn } from '@/lib/utils';
 
-export type Difficulty = 'easy' | 'medium' | 'hard';
-
-export const DIFFICULTY = {
-  1: 'easy',
-  2: 'medium',
-  3: 'hard'
-}
+export const DIFFICULTY_COLOR = {
+  1: 'green',
+  2: 'yellow',
+  3: 'red'
+};
 
 export default function Badge({
-  title,
-  path,
+  name,
+  src,
   alt,
-  type = 'easy',
-  earned = false
+  level
 }: {
-  title: string;
-  path: string;
+  name: string;
+  src: string;
   alt: string;
-  type?: Difficulty;
-  earned?: boolean;
+  level: number;
 }) {
   return (
     <div className="flex w-24 flex-col space-y-2 text-center">
       <Image
-        src={path}
+        src={`data:image;base64,${src}`}
         alt={alt}
         className={cn(`rounded-full border-2 lg:border-4`, {
-          'border-green-600': type === 'easy',
-          'border-yellow-600': type === 'medium',
-          'border-red-600': type === 'hard',
-          'border-gray-600 opacity-40': !earned
+          'border-green-600': level === 1,
+          'border-yellow-600': level === 2,
+          'border-red-600': level === 3
         })}
         width={500}
         height={500}
       />
-      <span className="text-sm font-semibold">{earned ? title : '****'}</span>
+      <span className="text-sm font-semibold">{name}</span>
     </div>
   );
 }

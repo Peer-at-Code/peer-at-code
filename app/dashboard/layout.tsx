@@ -1,11 +1,16 @@
 import { type ReactNode } from 'react';
 
+import { UserProvider } from '@/context/user';
 import Wrapper from '@/ui/dashboard/Wrapper';
+import { cookies } from 'next/headers';
 
-export default function Layout({ children }: { children: ReactNode }) {
+export default async function Layout({ children }: { children: ReactNode }) {
+  const token = cookies().get('token')!.value;
   return (
     <div className="flex h-screen w-full flex-col">
-      <Wrapper>{children}</Wrapper>
+      <UserProvider token={token}>
+        <Wrapper>{children}</Wrapper>
+      </UserProvider>
     </div>
   );
 }

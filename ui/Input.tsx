@@ -1,6 +1,5 @@
 import { forwardRef } from 'react';
 import ErrorMessage from './ErrorMessage';
-import Icon from './Icon';
 import Label from './Label';
 
 const Input = forwardRef<

@@ -48,6 +48,6 @@ export const navItems: NavItem[] = [
     name: 'Paramètres',
     slug: 'settings',
     icon: 'equalizer-line',
-    disabled: false
+    disabled: true
   }
 ];

@@ -1,12 +1,11 @@
 'use client';
 
-import { useMe } from '@/lib/hooks/use-players';
+import { UserContext } from '@/context/user';
 import Card from '@/ui/Card';
-import cookies from 'js-cookie';
+import { useContext } from 'react';
 
 export default function Page() {
-  const token = cookies.get('token');
-  const { data: me, isLoading } = useMe({ token: token! });
+  const { data: me, isLoading } = useContext(UserContext);
   return (
     <div className="flex h-full w-full flex-col space-y-4">
       <div className="w-full">
@@ -19,21 +18,16 @@ export default function Page() {
             <Card
               isLoading={isLoading}
               icon="pie-chart-line"
-              title="Puzzles"
+              title="Puzzles résolus"
               data={me?.completions}
             />
             <Card
               isLoading={isLoading}
               icon="award-line"
-              title="Badges"
-              data={me?.badges || 'Aucun'}
+              title="Badges obtenus"
+              data={me?.badges?.length || 'Aucun'}
             />
-            <Card
-              isLoading={isLoading}
-              icon="bar-chart-line"
-              title="Score (classement plus tard)"
-              data={me?.score}
-            />
+            <Card isLoading={isLoading} icon="bar-chart-line" title="Rang actuel" data={me?.rank} />
           </main>
         </section>
       </div>

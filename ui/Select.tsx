@@ -1,5 +1,4 @@
 import { forwardRef } from 'react';
-import type { UseFormRegister } from 'react-hook-form';
 import ErrorMessage from './ErrorMessage';
 import Label from './Label';
 
@@ -17,7 +16,7 @@ const Select = forwardRef<
     <Label label={label} description={description} required={props.required} className={className}>
       <select
         className={
-          'w-full cursor-pointer overflow-hidden rounded-lg border-2 border-highlight-primary bg-transparent px-5 py-2.5 text-sm font-medium text-secondary opacity-80 outline-none transition-opacity hover:opacity-100 disabled:opacity-50'
+          'w-full cursor-pointer overflow-hidden rounded-lg border-2 border-highlight-primary bg-transparent px-5 py-2.5 text-sm font-medium text-secondary opacity-80 outline-none outline-0 transition-opacity  hover:opacity-100 focus:outline-none focus:ring-1 focus:ring-brand disabled:opacity-50'
         }
         {...props}
         ref={ref}

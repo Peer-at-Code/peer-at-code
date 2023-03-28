@@ -1,4 +1,5 @@
 import fetcher from './fetcher';
+import type { Group } from './players';
 
 export const getScores = async ({ token }: { token: string }): Promise<Score[]> => {
   const { data, status } = await fetcher.get(`/leaderboard`, {
@@ -25,6 +26,7 @@ export type Score = {
   tries: number;
   completions: number;
   pseudo: string;
-  group: string;
+  groups: Group[];
   avatar: string;
+  rank: number;
 };

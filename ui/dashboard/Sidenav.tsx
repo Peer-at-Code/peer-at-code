@@ -2,6 +2,7 @@
 
 import { NavItem, navItems } from '@/lib/nav-items';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import AppLink from '../AppLink';
 import Icon from '../Icon';
@@ -18,12 +19,12 @@ export default function Sidenav({ isOpen, toggle }: { isOpen: boolean; toggle: (
       )}
     >
       <div className="flex h-full flex-col">
-        <div className="flex p-6">
-          <AppLink className="truncate" href="/">
-            <h1>Peer-at Code</h1>
+        <div className="flex w-full justify-center p-[9px]">
+          <AppLink href="/">
+            <Image src="/assets/brand/peerat.png" alt="Peer-at" width={50} height={50} />
           </AppLink>
         </div>
-        <div className=" px-4 ">
+        <div className="px-4">
           <hr className="border-highlight-primary" />
         </div>
         <div className="px-4 pt-4">
@@ -76,7 +77,7 @@ function NavItem({
       className={cn('flex justify-center rounded-md px-3 py-3 text-sm lg:justify-start', {
         'text-muted hover:text-secondary': !isActive,
         'bg-highlight-primary text-secondary': isActive,
-        'text-gray-600 hover:text-gray-600': item.disabled,
+        'cursor-not-allowed text-gray-600 hover:text-gray-600': item.disabled,
         'justify-center lg:justify-start': isOpen,
         'justify-start sm:justify-center': !isOpen
       })}

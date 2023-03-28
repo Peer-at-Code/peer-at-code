@@ -2,9 +2,7 @@ import useSWR from 'swr';
 import { getPlayer } from '../players';
 
 export function useMe({ token }: { token: string }) {
-  return useSWR('me', () => getPlayer({ token }), {
-    revalidateOnReconnect: false
-  });
+  return useSWR('me', () => getPlayer({ token }));
 }
 
 export function usePlayer({ token, username }: { token: string; username: string }) {

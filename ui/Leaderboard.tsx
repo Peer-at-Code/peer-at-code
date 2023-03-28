@@ -6,22 +6,23 @@ import { useMemo, useState } from 'react';
 import AvatarComponent from './Avatar';
 import Select from './Select';
 
-const scoreColors = ['text-yellow-400', 'text-gray-400', 'text-orange-400'];
+const SCORE_COLORS = ['text-yellow-400', 'text-gray-400', 'text-orange-400'];
 
 export default function Leaderboard({ token }: { token: string }) {
   const { data, isLoading } = useLeaderboard({ token });
 
   const [filter, setFilter] = useState('');
 
-  let options;
+  let options = [] as { value: string; title: string }[];
 
   if (data) {
     options = data
-      .filter((score, index, self) => {
-        return index === self.findIndex((t) => t.group === score.group) && score.group !== '';
-      })
-      .sort((a, b) => (a.group > b.group ? 1 : -1))
-      .map((score) => ({ value: score.group, title: score.group }));
+      .filter((score) => score.groups && score.groups.length > 0)
+      .map((score) => score.groups.map((group) => ({ value: group.name, title: group.name })))
+      .flat()
+      .filter((group, index, self) => self.findIndex((g) => g.value === group.value) === index)
+      .sort((a, b) => a.title.localeCompare(b.title));
+
     options.unshift({ value: '', title: 'Tous' });
     options.push({ value: 'no-group', title: 'Sans groupe' });
   }
@@ -29,9 +30,9 @@ export default function Leaderboard({ token }: { token: string }) {
   const filteredData = useMemo(() => {
     if (filter) {
       if (filter === 'no-group') {
-        return data?.filter((score) => score.group === '');
+        return data?.filter((score) => !score.groups || score.groups.length === 0);
       }
-      return data?.filter((score) => score.group === filter);
+      return data?.filter((score) => score.groups?.find((group) => group.name === filter));
     }
     return data;
   }, [data, filter]);
@@ -65,12 +66,16 @@ export default function Leaderboard({ token }: { token: string }) {
             filteredData?.map((score, key) => (
               <li key={key} className="flex justify-between space-x-2">
                 <div className="flex items-center space-x-4">
-                  <span className={cn('font-semibold', scoreColors[key])}>{key + 1}</span>
+                  <span className={cn('font-semibold', SCORE_COLORS[score.rank - 1])}>
+                    {score.rank}
+                  </span>
                   <div className="flex items-center space-x-2">
                     <AvatarComponent name={score.pseudo} src={score.avatar} className="h-9 w-9" />
                     <div className="flex flex-col gap-x-2 sm:flex-row sm:items-center">
                       <span className="text-lg">{score.pseudo}</span>
-                      <span className="text-sm text-muted">{score.group}</span>
+                      <span className="text-sm text-muted">
+                        {score.groups?.map((g) => g.name).join(', ')}
+                      </span>
                     </div>
                   </div>
                 </div>
